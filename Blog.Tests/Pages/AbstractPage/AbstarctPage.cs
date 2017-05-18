@@ -27,23 +27,23 @@ namespace Blog.Tests.Pages.AbstractPage
 
         protected Actions Builder { get; set; }
 
-        protected void NavigateTo()
+        public void NavigateTo()
         {
             this.Driver.Navigate().GoToUrl(URL);
         }
 
-        protected void FollowLink(string linkText)
+        public void FollowLink(string linkText)
         {
             this.Wait.Until(ExpectedConditions.ElementIsVisible(By.LinkText(linkText))).Click();
         }
 
-        protected static void Type(IWebElement element, string text)
+        public static void Type(IWebElement element, string text)
         {
             element.Clear();
-            element.SendKeys(text);
+            element.SendKeys(text ?? string.Empty);
         }
 
-        protected static void ClickOnElements(
+        public static void ClickOnElements(
             IReadOnlyList<IWebElement> elements, IReadOnlyList<bool> values)
         {
             for (var i = 0; i < values.Count; i++)
