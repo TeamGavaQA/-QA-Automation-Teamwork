@@ -1,18 +1,23 @@
 ﻿using Blog.Tests.Models;
 using Blog.Tests.Pages.LoginPage;
+using NUnit.Framework;
+using OpenQA.Selenium;
 
-namespace Blog.Tests.TestFixtures.LoginTests
+namespace Blog.Tests.TestFixtures
 {
-    public class AbstractLoginTests : AbstractSeleniumTests<LoginPage, LoginPageModel>
+    public class LoginTests<TDriver> : AbstractSeleniumTests<TDriver, LoginPage, LoginPageModel>
+        where TDriver : IWebDriver
     {
-        public virtual void LoginShouldFailWithoutEmail()
+        [Test]
+        public void LoginShouldFailWithoutEmail()
         {
             this.Page.FillLoginForm(this.Model);
 
             this.Page.AssertTextMatch(this.Page.EmailErrorMessage, this.Model.ExpectedError);
         }
 
-        public virtual void LoginShouldFailWithoutPassword()
+        [Test]
+        public void LoginShouldFailWithoutPassword()
         {
             this.Page.FillLoginForm(this.Model);
 

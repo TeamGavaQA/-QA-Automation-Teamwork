@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Blog.Tests.Models;
+﻿using Blog.Tests.Models;
 using Blog.Tests.Pages.AbstractPage;
 using OpenQA.Selenium;
 
@@ -11,7 +10,7 @@ namespace Blog.Tests.Pages.LoginPage
         {
         }
 
-        protected override string URL => Path.Combine(base.baseUrl, "Account/Login");
+        protected override string URL => base.baseUrl + "Account/Login";
 
         public void FillLoginForm(LoginPageModel model)
         {

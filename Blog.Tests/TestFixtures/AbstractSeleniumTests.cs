@@ -3,12 +3,18 @@ using Blog.Tests.Pages.AbstractPage;
 using Blog.Tests.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using TestStack.Seleno.Configuration;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 
 namespace Blog.Tests.TestFixtures
 {
-    public abstract class AbstractSeleniumTests<TPage, TModel>
+    [TestFixture(typeof(ChromeDriver))]
+    [TestFixture(typeof(FirefoxDriver))]
+    [TestFixture(typeof(InternetExplorerDriver))]
+    public abstract class AbstractSeleniumTests<TDriver, TPage, TModel>
         where TPage : AbstarctPage
+        where TDriver : IWebDriver
     {
         protected IWebDriver Driver;
         protected TPage Page;
@@ -17,6 +23,7 @@ namespace Blog.Tests.TestFixtures
         [OneTimeSetUp]
         public void SetUp()
         {
+            this.Driver = BrowserHosts.GetInstance<TDriver>();
             this.Page = (TPage) Activator.CreateInstance(typeof(TPage), this.Driver);
             this.Driver.Manage().Window.Maximize();
         }
@@ -26,11 +33,6 @@ namespace Blog.Tests.TestFixtures
         {
             this.Page.NavigateTo();
             this.Model = ExcelDataReader.GetTestData<TModel>();
-        }
-
-        [OneTimeTearDown]
-        public void CleanUp()
-        {
         }
     }
 

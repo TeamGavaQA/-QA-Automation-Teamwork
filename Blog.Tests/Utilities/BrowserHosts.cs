@@ -18,18 +18,31 @@ namespace Blog.Tests.Utilities
             return host;
         };
 
-        private static readonly Lazy<SelenoHost> _chromeHost = new Lazy<SelenoHost>(
-            () => hostInit(new ChromeDriver()));
+        private static readonly Lazy<SelenoHost> _chromeHost = new Lazy<SelenoHost>(() =>
+            hostInit(new ChromeDriver()));
+        private static readonly Lazy<SelenoHost> _firefoxHost = new Lazy<SelenoHost>(() =>
+            hostInit(new FirefoxDriver()));
+        private static readonly Lazy<SelenoHost> _internetExplorerHost = new Lazy<SelenoHost>(() =>
+            hostInit(new InternetExplorerDriver()));
 
-        private static readonly Lazy<SelenoHost> _firefoxHost = new Lazy<SelenoHost>(
-            () => hostInit(new FirefoxDriver()));
+        private static IWebDriver Chrome => _chromeHost.Value.Application.Browser;
+        private static IWebDriver Firefox => _firefoxHost.Value.Application.Browser;
+        private static IWebDriver InternetExplorer => _internetExplorerHost.Value.Application.Browser;
 
-        private static readonly Lazy<SelenoHost> _internetExplorerHost = new Lazy<SelenoHost>(
-            () => hostInit(new InternetExplorerDriver()));
-
-        public static IWebDriver Chrome => _chromeHost.Value.Application.Browser;
-        public static IWebDriver Firefox => _firefoxHost.Value.Application.Browser;
-        public static IWebDriver InternetExplorer => _internetExplorerHost.Value.Application.Browser;
+        public static IWebDriver GetInstance<T>() where T : IWebDriver
+        {
+            switch (typeof(T).Name)
+            {
+                case nameof(ChromeDriver):
+                    return Chrome;
+                case nameof(FirefoxDriver):
+                    return Firefox;
+                case nameof(InternetExplorerDriver):
+                    return InternetExplorer;
+                default:
+                    throw new ArgumentException("Unsupported browser type", typeof(T).Name);
+            }
+        }
 
         public static void TerminateInstances()
         {

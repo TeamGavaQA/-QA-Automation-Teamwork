@@ -100,10 +100,7 @@
     <Compile Include="Pages\LoginPage\LoginPageMap.cs" />
     <Compile Include="TestFixtures\AbstractSeleniumTests.cs" />
     <Compile Include="TestFixtures\GlobalSetup.cs" />
-    <Compile Include="TestFixtures\LoginTests\AbstractLoginTests.cs" />
-    <Compile Include="TestFixtures\LoginTests\ChromeLoginTests.cs" />
-    <Compile Include="TestFixtures\LoginTests\FirefoxLoginTests.cs" />
-    <Compile Include="TestFixtures\LoginTests\InternetExplorerLoginTests.cs" />
+    <Compile Include="TestFixtures\LoginTests.cs" />
     <Compile Include="Utilities\BrowserHosts.cs" />
     <Compile Include="Utilities\ExcelDataReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

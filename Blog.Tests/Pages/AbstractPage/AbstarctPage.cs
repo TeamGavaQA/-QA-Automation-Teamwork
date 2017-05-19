@@ -16,7 +16,6 @@ namespace Blog.Tests.Pages.AbstractPage
             this.Driver = driver;
             this.Wait = new WebDriverWait(this.Driver, TimeSpan.FromSeconds(10));
             this.Builder = new Actions(this.Driver);
-
         }
 
         protected virtual string URL { get; set; }
