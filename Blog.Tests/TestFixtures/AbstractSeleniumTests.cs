@@ -13,7 +13,7 @@ namespace Blog.Tests.TestFixtures
     [TestFixture(typeof(FirefoxDriver))]
     [TestFixture(typeof(InternetExplorerDriver))]
     public abstract class AbstractSeleniumTests<TDriver, TPage, TModel>
-        where TPage : AbstarctPage
+        where TPage : AbstractPage
         where TDriver : IWebDriver
     {
         protected IWebDriver Driver;

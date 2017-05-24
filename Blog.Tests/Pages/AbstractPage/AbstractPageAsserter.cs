@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace Blog.Tests.Pages.AbstractPage
 {
-    public abstract partial class AbstarctPage
+    public abstract partial class AbstractPage
     {
         public void AssertTextMatch(IWebElement element, string text)
         {

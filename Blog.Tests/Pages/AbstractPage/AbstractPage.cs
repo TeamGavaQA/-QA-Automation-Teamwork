@@ -7,11 +7,11 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Blog.Tests.Pages.AbstractPage
 {
-    public abstract partial class AbstarctPage
+    public abstract partial class AbstractPage
     {
         protected string baseUrl = ConfigurationManager.AppSettings["URL"];
 
-        protected AbstarctPage(IWebDriver driver)
+        protected AbstractPage(IWebDriver driver)
         {
             this.Driver = driver;
             this.Wait = new WebDriverWait(this.Driver, TimeSpan.FromSeconds(10));

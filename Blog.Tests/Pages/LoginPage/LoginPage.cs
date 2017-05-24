@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 
 namespace Blog.Tests.Pages.LoginPage
 {
-    public partial class LoginPage : AbstarctPage
+    public partial class LoginPage : AbstractPage.AbstractPage
     {
         public LoginPage(IWebDriver driver) : base(driver)
         {
