@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using OpenQA.Selenium;
+using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
 using TestStack.Seleno.Configuration;
 
@@ -20,6 +21,18 @@ namespace Blog.Tests.Utilities
                 Func<RemoteWebDriver> browserConstructor;
                 switch (type.ToString())
                 {
+                    case nameof(InternetExplorerDriver):
+                        browserConstructor = () =>
+                            new InternetExplorerDriver(new InternetExplorerOptions
+                            {             
+                                RequireWindowFocus = false,
+                                IgnoreZoomLevel = true,
+                                EnsureCleanSession = true,
+                                EnableNativeEvents = false,
+                                IntroduceInstabilityByIgnoringProtectedModeSettings = true,
+                                UnexpectedAlertBehavior = InternetExplorerUnexpectedAlertBehavior.Dismiss
+                            });
+                        break;
                     // Override the constructor for specific browsers here if needed.
                     default:
                         browserConstructor = () =>
