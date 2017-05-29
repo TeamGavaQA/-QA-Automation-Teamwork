@@ -16,14 +16,6 @@ namespace Blog.Tests.TestFixtures
         where TDriver : IWebDriver
     {
         [Test]
-        public void NavigateToRegistrationPage()
-        {
-            this.Page.NavigateTo();
-            this.Page.RegistrationButton.Click();
-
-            this.Page.AssertTextMatch(this.Page.RegistrationHeader, "Register");
-        }
-        [Test]
         public void RegisterShouldFailWithoutEmail()
         {
             this.Page.FillRegistrationForm(this.Model);

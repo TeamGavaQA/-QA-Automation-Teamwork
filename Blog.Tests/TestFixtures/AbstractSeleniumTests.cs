@@ -8,14 +8,13 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
+
 
 namespace Blog.Tests.TestFixtures
 {
     [TestFixture(typeof(ChromeDriver))]
     [TestFixture(typeof(FirefoxDriver))]
-    [TestFixture(typeof(InternetExplorerDriver))]
-    public abstract class AbstractSeleniumTests<TDriver, TPage, TModel>
+     public abstract class AbstractSeleniumTests<TDriver, TPage, TModel>
         where TPage : AbstractPage
         where TDriver : IWebDriver
     {
