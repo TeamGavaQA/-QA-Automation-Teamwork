@@ -10,8 +10,6 @@
 
         public string ConfirmPassword { get; set; }
 
-        public string RememberMe { get; set; }
-
         public string ExpectedError { get; set; }
 
     }

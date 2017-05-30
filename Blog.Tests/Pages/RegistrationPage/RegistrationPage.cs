@@ -16,10 +16,6 @@ namespace Blog.Tests.Pages.RegistrationPage
             Type(this.FullName, model.FullName);
             Type(this.Password, model.Password);
             Type(this.ConfirmPassword, model.ConfirmPassword);
-            if (model.RememberMe == "1")
-            {
-                this.RememberMe.Click();
-            }
 
 
             this.RegButton.Click();

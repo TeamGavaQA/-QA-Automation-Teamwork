@@ -2,34 +2,53 @@
 using Blog.Tests.Pages.RegistrationPage;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blog.Tests.TestFixtures
 {
-    class RegistrationTests<TDriver> : AbstractSeleniumTests<TDriver, RegistrationPage, RegistrationPageModel>
+    public class RegistrationTests<TDriver> : AbstractSeleniumTests<TDriver, RegistrationPage, RegistrationPageModel>
         where TDriver : IWebDriver
     {
         [Test]
         public void RegisterShouldFailWithoutEmail()
         {
-            this.Page.FillRegistrationForm(this.Model);
-
-            this.Page.AssertTextMatch(this.Page.EmailErrorMessage, this.Model.ExpectedError);
+            FillFormAndAssertError();
         }
+
         [Test]
         public void RegisterShouldFailWithoutFullName()
         {
-            this.Page.FillRegistrationForm(this.Model);
-
-            this.Page.AssertTextMatch(this.Page.FullNameErrorMessage, this.Model.ExpectedError);
+            FillFormAndAssertError();
         }
 
+        [Test]
+        public void RegisterShouldFailWithoutPassword()
+        {
+            FillFormAndAssertError();
+        }
 
+        [Test]
+        public void RegisterShouldFailWithInvalidEmail()
+        {
+            FillFormAndAssertError();
+        }
+
+        [Test]
+        public void RegisterShouldFailWithTooLongFullName()
+        {
+            FillFormAndAssertError();
+        }
+
+        [Test]
+        public void RegisterShouldFailWithMissmatchedPaswords()
+        {
+            FillFormAndAssertError();
+        }
+
+        private void FillFormAndAssertError()
+        {
+            this.Page.FillRegistrationForm(this.Model);
+
+            this.Page.AssertTextMatch(this.Page.ErrorMessage, this.Model.ExpectedError);
+        }
     }
 }
